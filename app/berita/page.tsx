@@ -1,12 +1,17 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const news = [
   {
     category: "Kampus",
     date: "30 Agustus 2026",
-    title: "Universitas Mandala Bhakti Mempersiapkan Pengembangan Pendidikan Tinggi",
+    title:
+      "Universitas Mandala Bhakti Mempersiapkan Pengembangan Pendidikan Tinggi",
     description:
       "Informasi mengenai perkembangan Universitas Mandala Bhakti dalam membangun lingkungan pendidikan yang inovatif, profesional, dan relevan dengan kebutuhan masyarakat.",
+    href: "/berita/universitas-mandala-bhakti-mempersiapkan-pengembangan-pendidikan-tinggi",
+    image:
+      "/berita/Universitas Mandala Bhakti Mempersiapkan Pengembangan Pendidikan Tinggi.png",
   },
   {
     category: "Akademik",
@@ -14,6 +19,8 @@ const news = [
     title: "Mendorong Pembelajaran yang Relevan dengan Perkembangan Industri",
     description:
       "Universitas Mandala Bhakti terus mengembangkan pembelajaran yang menggabungkan pengetahuan akademik, praktik, dan kebutuhan dunia profesional.",
+    href: "",
+    image: "",
   },
   {
     category: "Kemahasiswaan",
@@ -21,6 +28,8 @@ const news = [
     title: "Kegiatan Mahasiswa sebagai Ruang Pengembangan Potensi",
     description:
       "Berbagai kegiatan kemahasiswaan menjadi bagian dari upaya membangun pengalaman, karakter, kepemimpinan, dan kemampuan mahasiswa.",
+    href: "",
+    image: "",
   },
   {
     category: "PMB",
@@ -28,6 +37,8 @@ const news = [
     title: "Penerimaan Mahasiswa Baru Universitas Mandala Bhakti",
     description:
       "Informasi penerimaan mahasiswa baru bagi calon mahasiswa yang ingin melanjutkan pendidikan di Universitas Mandala Bhakti.",
+    href: "",
+    image: "",
   },
   {
     category: "Penelitian",
@@ -35,6 +46,8 @@ const news = [
     title: "Pengembangan Penelitian dan Inovasi untuk Masyarakat",
     description:
       "Penelitian menjadi bagian penting dalam pengembangan ilmu pengetahuan dan menghasilkan solusi yang memberikan manfaat bagi masyarakat.",
+    href: "",
+    image: "",
   },
   {
     category: "Kegiatan",
@@ -42,6 +55,8 @@ const news = [
     title: "Membangun Kolaborasi untuk Pengembangan Pendidikan",
     description:
       "Kolaborasi dengan berbagai pihak menjadi salah satu langkah dalam memperluas manfaat pendidikan dan menciptakan peluang pengembangan bersama.",
+    href: "",
+    image: "",
   },
 ];
 
@@ -252,45 +267,67 @@ export default function BeritaPage() {
                 className="group overflow-hidden rounded-[1.5rem] border border-[#E3E0D6] bg-white transition hover:-translate-y-1 hover:border-[#D9C56A] hover:shadow-xl"
               >
 
-                {/* IMAGE PLACEHOLDER */}
+                {/* IMAGE */}
 
-                <div className="flex h-52 items-center justify-center bg-[#21145F]">
+                {item.image ? (
 
-                  <div className="text-center">
+                  <div className="relative h-52 overflow-hidden bg-[#21145F]">
 
-                    <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#F4C400]/15 text-[#F4C400]">
-
-                      <svg
-                        className="h-7 w-7"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={1.5}
-                          d="M4 5h16a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V6a1 1 0 011-1z"
-                        />
-
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={1.5}
-                          d="M8 10a2 2 0 100-4 2 2 0 000 4zM21 15l-5-5L5 19"
-                        />
-                      </svg>
-
-                    </div>
-
-                    <p className="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#F4C400]">
-                      Universitas Mandala Bhakti
-                    </p>
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      className="object-cover transition duration-500 group-hover:scale-105"
+                    />
 
                   </div>
 
-                </div>
+                ) : (
 
+                  <div className="flex h-52 items-center justify-center bg-[#21145F]">
+
+                    <div className="text-center">
+
+                      <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#F4C400]/15 text-[#F4C400]">
+
+                        <svg
+                          className="h-7 w-7"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={1.5}
+                            d="M4 5h16a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V6a1 1 0 011-1z"
+                          />
+
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={1.5}
+                            d="M8 10a2 2 0 100-4 2 2 0 000 4zM21 15l-5-5L5 19"
+                          />
+
+                        </svg>
+
+                      </div>
+
+                      <p className="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#F4C400]">
+                        Universitas Mandala Bhakti
+                      </p>
+
+                    </div>
+
+                  </div>
+
+                )}
+
+
+                {/* NEWS CONTENT */}
 
                 <div className="p-7">
 
@@ -317,12 +354,22 @@ export default function BeritaPage() {
                   </p>
 
 
-                  <button
-                    type="button"
-                    className="mt-6 text-sm font-semibold text-[#21145F] transition hover:text-[#C49A00]"
-                  >
-                    Baca Selengkapnya →
-                  </button>
+                  {item.href ? (
+
+                    <Link
+                      href={item.href}
+                      className="mt-6 inline-block text-sm font-semibold text-[#21145F] transition hover:text-[#C49A00]"
+                    >
+                      Baca Selengkapnya →
+                    </Link>
+
+                  ) : (
+
+                    <span className="mt-6 inline-block text-sm font-semibold text-[#21145F]">
+                      Baca Selengkapnya →
+                    </span>
+
+                  )}
 
                 </div>
 

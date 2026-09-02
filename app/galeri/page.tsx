@@ -7,7 +7,7 @@ const photos = [
     number: "01",
     title: "Kegiatan Akademik",
     category: "Akademik",
-    image: "",
+    image: "/galeri/Kegiatan Akademik.png",
   },
   {
     number: "02",
@@ -47,7 +47,7 @@ const videos = [
     title: "Profil Universitas Mandala Bhakti",
     description:
       "Video profil dan informasi mengenai Universitas Mandala Bhakti.",
-    url: "",
+    url: "/galeri/Profil Universitas Mandala Bhakti.mp4",
   },
   {
     number: "02",
@@ -68,10 +68,18 @@ const videos = [
 export default function GaleriPage() {
   const [activeTab, setActiveTab] = useState<"foto" | "video">("foto");
 
+  const [selectedPhoto, setSelectedPhoto] = useState<{
+    title: string;
+    image: string;
+  } | null>(null);
+
   return (
     <main className="min-h-screen bg-[#F8F7F2] pt-20">
 
-      {/* HERO */}
+      {/* =====================================================
+          HERO
+      ===================================================== */}
+
       <section className="relative overflow-hidden bg-[#17134F] text-white">
 
         <div className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-[#F4C400]/10 blur-3xl" />
@@ -110,7 +118,10 @@ export default function GaleriPage() {
       </section>
 
 
-      {/* GALLERY */}
+      {/* =====================================================
+          GALLERY
+      ===================================================== */}
+
       <section className="bg-white py-20">
 
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -146,7 +157,9 @@ export default function GaleriPage() {
           </div>
 
 
-          {/* FOTO */}
+          {/* =================================================
+              FOTO
+          ================================================= */}
 
           {activeTab === "foto" && (
 
@@ -156,18 +169,45 @@ export default function GaleriPage() {
 
                 <article
                   key={photo.number}
-                  className="group overflow-hidden rounded-3xl border border-[#E3E0D6] bg-white transition hover:-translate-y-1 hover:shadow-xl"
+                  className="group overflow-hidden rounded-3xl border border-[#E3E0D6] bg-white transition hover:-translate-y-1 hover:border-[#D9C56A] hover:shadow-xl"
                 >
 
                   <div className="relative aspect-[4/3] overflow-hidden bg-[#F8F7F2]">
 
                     {photo.image ? (
-                      <img
-                        src={photo.image}
-                        alt={photo.title}
-                        className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                      />
+
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setSelectedPhoto({
+                            title: photo.title,
+                            image: photo.image,
+                          })
+                        }
+                        className="relative block h-full w-full cursor-zoom-in text-left"
+                        aria-label={`Lihat foto ${photo.title}`}
+                      >
+
+                        <img
+                          src={photo.image}
+                          alt={photo.title}
+                          className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                        />
+
+                        {/* HOVER OVERLAY */}
+
+                        <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-[#17134F]/0 transition duration-300 group-hover:bg-[#17134F]/20">
+
+                          <span className="rounded-full bg-white/95 px-5 py-2.5 text-sm font-semibold text-[#17134F] opacity-0 shadow-lg transition duration-300 group-hover:opacity-100">
+                            Lihat Foto
+                          </span>
+
+                        </div>
+
+                      </button>
+
                     ) : (
+
                       <div className="flex h-full flex-col items-center justify-center px-6 text-center">
 
                         <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#FFF9D9] text-2xl">
@@ -179,6 +219,7 @@ export default function GaleriPage() {
                         </p>
 
                       </div>
+
                     )}
 
                   </div>
@@ -213,7 +254,9 @@ export default function GaleriPage() {
           )}
 
 
-          {/* VIDEO */}
+          {/* =================================================
+              VIDEO
+          ================================================= */}
 
           {activeTab === "video" && (
 
@@ -223,20 +266,25 @@ export default function GaleriPage() {
 
                 <article
                   key={video.number}
-                  className="overflow-hidden rounded-3xl border border-[#E3E0D6] bg-[#F8F7F2] transition hover:-translate-y-1 hover:bg-white hover:shadow-xl"
+                  className="overflow-hidden rounded-3xl border border-[#E3E0D6] bg-[#F8F7F2] transition hover:-translate-y-1 hover:border-[#D9C56A] hover:bg-white hover:shadow-xl"
                 >
 
-                  <div className="flex aspect-video items-center justify-center bg-[#17134F]">
+                  <div className="relative aspect-video overflow-hidden bg-[#17134F]">
 
                     {video.url ? (
-                      <iframe
+
+                      <video
                         src={video.url}
-                        title={video.title}
-                        className="h-full w-full"
-                        allowFullScreen
-                      />
+                        controls
+                        preload="metadata"
+                        className="h-full w-full object-cover"
+                      >
+                        Browser Anda tidak mendukung pemutaran video.
+                      </video>
+
                     ) : (
-                      <div className="text-center text-white">
+
+                      <div className="flex h-full flex-col items-center justify-center text-center text-white">
 
                         <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-white/10 text-2xl">
                           ▶
@@ -247,6 +295,7 @@ export default function GaleriPage() {
                         </p>
 
                       </div>
+
                     )}
 
                   </div>
@@ -281,7 +330,10 @@ export default function GaleriPage() {
       </section>
 
 
-      {/* INFO */}
+      {/* =====================================================
+          INFO
+      ===================================================== */}
+
       <section className="bg-[#F8F7F2] py-20">
 
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -299,11 +351,11 @@ export default function GaleriPage() {
               </h2>
 
               <p className="mt-5 text-lg leading-8 text-[#55536A]">
-                Foto dan video yang ditampilkan pada halaman ini sebaiknya
-                berasal dari dokumentasi resmi Universitas Mandala Bhakti
-                agar informasi yang dipublikasikan tetap akurat dan dapat
-                dipertanggungjawabkan.
-
+                Foto dan video yang ditampilkan pada halaman ini merupakan
+                bagian dari dokumentasi kegiatan Universitas Mandala Bhakti.
+                Koleksi galeri akan terus diperbarui seiring dengan
+                tersedianya dokumentasi kegiatan akademik, kemahasiswaan,
+                program studi, dan kegiatan kampus lainnya.
               </p>
 
             </div>
@@ -313,6 +365,60 @@ export default function GaleriPage() {
         </div>
 
       </section>
+
+
+      {/* =====================================================
+          PHOTO LIGHTBOX
+      ===================================================== */}
+
+      {selectedPhoto && (
+
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-[#17134F]/90 p-6"
+          onClick={() => setSelectedPhoto(null)}
+        >
+
+          <div
+            className="relative max-h-[90vh] max-w-6xl"
+            onClick={(event) => event.stopPropagation()}
+          >
+
+            {/* CLOSE BUTTON */}
+
+            <button
+              type="button"
+              onClick={() => setSelectedPhoto(null)}
+              className="absolute -right-3 -top-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white text-2xl font-bold leading-none text-[#17134F] shadow-xl transition hover:bg-[#FFF9D9]"
+              aria-label="Tutup foto"
+            >
+              ×
+            </button>
+
+
+            {/* IMAGE */}
+
+            <img
+              src={selectedPhoto.image}
+              alt={selectedPhoto.title}
+              className="max-h-[80vh] max-w-full rounded-2xl object-contain shadow-2xl"
+            />
+
+
+            {/* TITLE */}
+
+            <div className="mt-4 rounded-xl bg-white px-5 py-3 text-center shadow-xl">
+
+              <p className="text-sm font-semibold text-[#17134F]">
+                {selectedPhoto.title}
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      )}
 
     </main>
   );
