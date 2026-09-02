@@ -7,7 +7,7 @@ const documents = [
     description:
       "Informasi umum mengenai Universitas Mandala Bhakti, program pendidikan, dan lingkungan akademik.",
     category: "Informasi Universitas",
-    file: "",
+    file: "/downloads/Brosur%20Universitas.png",
   },
   {
     number: "02",
